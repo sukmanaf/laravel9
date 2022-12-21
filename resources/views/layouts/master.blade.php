@@ -798,7 +798,10 @@
         <div class="dlabnav">
             <div class="dlabnav-scroll">
 				<ul class="metismenu" id="menu">
-                    <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
+					<li><a href="{{ url('users')}}">User</a></li>
+					<li><a href="{{ url('posts')}}">Data</a></li>
+
+                    <!-- <li><a class="has-arrow " href="javascript:void()" aria-expanded="false">
 							<i class="fas fa-home"></i>
 							<span class="nav-text">Dashboard</span>
 						</a>
@@ -938,9 +941,9 @@
                             <li><a href="page-lock-screen.html">Lock Screen</a></li>
                             <li><a href="empty-page.html">Empty Page</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
-				<div class="side-bar-profile">
+				<!-- <div class="side-bar-profile">
 					<div class="d-flex align-items-center justify-content-between mb-3">
 						<div class="side-bar-profile-img">
 							<img src="{{url('')}}/images/user.jpg" alt="">
@@ -962,12 +965,12 @@
 							<span class="sr-only">45% Complete</span>
 						</div>
 					</div>
-				</div>
-				
+				</div> -->
+<!-- 				
 				<div class="copyright">
 					<p><strong>Fillow Saas Admin</strong> © 2021 All Rights Reserved</p>
 					<p class="fs-12">Made with <span class="heart"></span> by DexignLabs</p>
-				</div>
+				</div> -->
 			</div>
         </div>
         <!--**********************************

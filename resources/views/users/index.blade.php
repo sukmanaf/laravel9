@@ -10,7 +10,7 @@
         </div> -->
         <!-- row -->
 
-        <a href="{{ route('users.create') }}" class="btn btn-sm btn-primary ">TAMBAH</a>
+        <a href="{{ route('users.create') }}" class="btn btn-xxs btn-primary ">TAMBAH</a>
 
         <div class="row">
             <div class="col-12">
@@ -37,10 +37,10 @@
                                         <td>{!! $user->jenis !!}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $user->id) }}" method="POST">
-                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                                <a href="{{ route('users.edit', $user->id) }}" class="btn btn-xxs btn-primary">EDIT</a>
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                                                <button type="submit" class="btn btn-xxs btn-danger">HAPUS</button>
                                             </form>
                                         </td>
                                     </tr>

@@ -5,6 +5,10 @@ namespace App\Providers;
 use App\Actions\Jetstream\DeleteUser;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Jetstream\Jetstream;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Fortify;
 
 class JetstreamServiceProvider extends ServiceProvider
 {
@@ -25,6 +29,24 @@ class JetstreamServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Fortify::authenticateUsing(function (Request $request) {
+            $secret = "6LfhoZkkAAAAAOG1EvljaWAHX7SMITmJmIUL5d4U";
+            $check = file_get_contents("https://google.com/recaptcha/api/siteverify?secret=".$secret."&response=".$_POST['g-recaptcha-response']);
+            $res = json_decode($check);
+
+            $user = User::where('email', $request->email)->first();
+            
+   
+            if ($user &&
+                Hash::check($request->password, $user->password) 
+                ) {
+                // if($res->success){
+                //   die('true');
+                    return $user;
+                // }
+            }
+
+        });
         $this->configurePermissions();
 
         Jetstream::deleteUsersUsing(DeleteUser::class);

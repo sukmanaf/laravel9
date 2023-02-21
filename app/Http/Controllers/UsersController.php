@@ -11,6 +11,7 @@ use Laravel\Fortify\Contracts\CreatesNewUsers;
 use Laravel\Fortify\Contracts\PasswordValidationRules;
 use Laravel\Jetstream\Jetstream;
 use Laravel\Fortify\Rules\Password;
+use Datatable;
 
 class UsersController extends Controller
 {    
@@ -27,6 +28,29 @@ class UsersController extends Controller
 
         //render view with posts
         return view('users.index', compact('users'));
+    }
+
+
+    public function data(Request $request)
+    {
+        // Fetch all users from the database
+        $users = User::all();
+
+        // Check if the request is an AJAX request (from DataTables)
+        if ($request->ajax()) {
+            // If it is, return the users as a JSON object
+            // return datatables()->of($users)->toJson();
+            return response()->json([
+                'data' => [
+                    'name' => $users->name,
+                    'email' => $users->email, 
+                    'jenis' => $users->jenis 
+                ]
+            ]);
+        }
+
+        // Otherwise, return the normal view
+        return view('users.index', ['users' => $users]);
     }
     
     /**
@@ -49,14 +73,16 @@ class UsersController extends Controller
     {
         //validate form
         // dd($request->input());
-        $request=$request->input();
+        // $request=$request->input();
         //create post
-        Validator::make($request, [
+        $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'jenis' => ['required'],
             'password' => ['required'],
-        ])->validate();
+        ]);
+        
+
             // dd($input);
         User::create([
             'name' => $request['name'],
@@ -75,53 +101,37 @@ class UsersController extends Controller
      * @param  mixed $users
      * @return void
      */
-    public function edit(Users $users)
+    public function edit(User $user)
     {
-        return view('users.edit', compact('users'));
+        return view('users.edit', compact('user'));
     }
     
     /**
      * update
      *
      * @param  mixed $request
-     * @param  mixed $post
+     * @param  mixed $user
      * @return void
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, User $user)
     {
         //validate form
         $this->validate($request, [
-            'image'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title'     => 'required|min:5',
-            'content'   => 'required|min:10'
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'jenis' => ['required'],
+            'password' => ['required'],
         ]);
+        
 
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
-
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/posts', $image->hashName());
-
-            //delete old image
-            Storage::delete('public/posts/'.$post->image);
-
-            //update post with new image
-            $post->update([
-                'image'     => $image->hashName(),
-                'title'     => $request->title,
-                'content'   => $request->content
-            ]);
-
-        } else {
-
-            //update post without image
-            $post->update([
-                'title'     => $request->title,
-                'content'   => $request->content
-            ]);
-        }
-
+            // dd($input);
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'jenis' => $request['jenis'],
+            'password' => Hash::make($request['password']),
+        ]);
+        
         //redirect to index
         return redirect()->route('users.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
@@ -129,16 +139,16 @@ class UsersController extends Controller
     /**
      * destroy
      *
-     * @param  mixed $post
+     * @param  mixed $user
      * @return void
      */
-    public function destroy(Post $post)
+    public function destroy(User $user)
     {
         //delete image
-        Storage::delete('public/posts/'. $post->image);
+        Storage::delete('public/posts/'. $user->image);
 
-        //delete post
-        $post->delete();
+        //delete user
+        $user->delete();
 
         //redirect to index
         return redirect()->route('users.index')->with(['success' => 'Data Berhasil Dihapus!']);

@@ -41,8 +41,8 @@
             @enderror
         </div>
 
-        <button type="submit" class="btn btn-md btn-primary">SIMPAN</button>
-        <button type="reset" class="btn btn-md btn-warning">RESET</button>
+        <button type="submit" class="btn btn-xxs btn-primary">SIMPAN</button>
+        <button type="reset" class="btn btn-xxs btn-warning">RESET</button>
 
     </form> 
 </div>

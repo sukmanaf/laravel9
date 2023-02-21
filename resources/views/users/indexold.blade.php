@@ -15,7 +15,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow rounded">
                     <div class="card-body">
-                        <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
+                        <a href="{{ route('users.create') }}" class="btn btn-md btn-success mb-3">TAMBAH POST</a>
                         <table class="table table-bordered">
                             <thead>
                               <tr>
@@ -26,16 +26,16 @@
                               </tr>
                             </thead>
                             <tbody>
-                              @forelse ($posts as $post)
+                              @forelse ($users as $user)
                                 <tr>
                                     <td class="text-center">
-                                        <img src="{{ Storage::url('public/posts/').$post->image }}" class="rounded" style="width: 150px">
+                                        <img src="{{ Storage::url('public/posts/').$user->image }}" class="rounded" style="width: 150px">
                                     </td>
-                                    <td>{{ $post->title }}</td>
-                                    <td>{!! $post->content !!}</td>
+                                    <td>{{ $user->title }}</td>
+                                    <td>{!! $user->content !!}</td>
                                     <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('users.destroy', $user->id) }}" method="POST">
+                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-sm btn-primary">EDIT</a>
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
@@ -49,7 +49,7 @@
                               @endforelse
                             </tbody>
                           </table>  
-                          {{ $posts->links() }}
+                          {{ $users->links() }}
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UsersController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,8 +19,10 @@ Route::get('/', function () {
 
 //route resource
 Route::resource('/posts', \App\Http\Controllers\PostController::class);
+Route::resource('/maps', \App\Http\Controllers\MapsController::class);
+Route::get('users/data', [UsersController::class,'data'])->name('users.data');
 Route::resource('/users', \App\Http\Controllers\UsersController::class);
-
+Route::resource('/captcha', \App\Http\Controllers\CaptchaController::class);
 
 Route::middleware([
     'auth:sanctum',

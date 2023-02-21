@@ -25,6 +25,8 @@
 	<link href="{{  url('') }}/vendor/jquery-nice-select/css/nice-select.css" rel="stylesheet">
     <link href="{{  url('') }}/css/style.css" rel="stylesheet">
     <link href="{{  url('') }}/css/custom.css" rel="stylesheet">
+    <script src="{{  url('') }}/js/jquery.3.6.2.min.js"></script>
+
 </head>
 
 <body>
@@ -32,12 +34,12 @@
     <!--*******************
         Preloader start
     ********************-->
-   <div id="preloader">
+   <!-- <div id="preloader">
 		<div class="lds-ripple">
 			<div></div>
 			<div></div>
 		</div>
-    </div>
+    </div> -->
     <!--*******************
         Preloader end
     ********************-->
@@ -53,14 +55,17 @@
         ***********************************-->
 		<div class="nav-header">
             <a href="index.html" class="brand-logo">
-				<svg class="logo-abbr" width="55" height="55" viewbox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<!-- <svg class="logo-abbr" width="55" height="55" viewbox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
 					<path fill-rule="evenodd" clip-rule="evenodd" d="M27.5 0C12.3122 0 0 12.3122 0 27.5C0 42.6878 12.3122 55 27.5 55C42.6878 55 55 42.6878 55 27.5C55 12.3122 42.6878 0 27.5 0ZM28.0092 46H19L19.0001 34.9784L19 27.5803V24.4779C19 14.3752 24.0922 10 35.3733 10V17.5571C29.8894 17.5571 28.0092 19.4663 28.0092 24.4779V27.5803H36V34.9784H28.0092V46Z" fill="url(#paint0_linear)"></path>
 					<defs>
 					</defs>
-				</svg>
+				</svg> -->
+                <div style="background-color: white;padding:10px">
+                    <span style="color:red;">SF</span>
+                </div>
 				<div class="brand-title">
-					<h2 class="">Fillow.</h2>
-					<span class="brand-sub-title">Saas Admin Dashboard</span>
+					<h2 class="">SF14.RAR</h2>
+					<span class="brand-sub-title">Admin Dashboard</span>
 				</div>
             </a>
             <div class="nav-control">
@@ -1021,7 +1026,6 @@
         Scripts
     ***********************************-->
     <!-- Required vendors -->
-    <script src="{{  url('') }}/js/jquery.3.6.2.min.js"></script>
 
     <script src="{{  url('') }}/vendor/global/global.min.js"></script>
     <script src="{{  url('') }}/vendor/chart.js/Chart.bundle.min.js"></script>
